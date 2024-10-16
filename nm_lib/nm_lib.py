@@ -30,7 +30,9 @@ def deriv_fwd(xx: np.ndarray, hh: np.ndarray, **kwargs) -> np.ndarray:
     """
 
 
-def order_conv(hh: np.ndarray, hh2: np.ndarray, hh4: np.ndarray, **kwargs) -> np.ndarray:
+def order_conv(
+    hh: np.ndarray, hh2: np.ndarray, hh4: np.ndarray, **kwargs
+) -> np.ndarray:
     """
     Computes the order of convergence of a derivative function
 
@@ -49,7 +51,7 @@ def order_conv(hh: np.ndarray, hh2: np.ndarray, hh4: np.ndarray, **kwargs) -> np
     """
 
 
-def deriv_4tho(xx: np.ndarray, hh: np.ndarray, **kwargs) -> np.ndarray: 
+def deriv_4tho(xx: np.ndarray, hh: np.ndarray, **kwargs) -> np.ndarray:
     """
     Returns the 4th order derivative of hh with respect to xx.
 
@@ -73,9 +75,9 @@ def step_adv_burgers(
     hh: np.ndarray,
     a: float,
     cfl_cut: float = 0.98,
-    ddx = lambda x,y: deriv_fwd(x, y),
-    **kwargs
-) -> np.ndarray: 
+    ddx=lambda x, y: deriv_fwd(x, y),
+    **kwargs,
+) -> np.ndarray:
     r"""
     Right-hand side of Burger's eq. where a can be a constant or a function that
     depends on xx.
@@ -132,11 +134,11 @@ def evolv_adv_burgers(
     nt: int,
     a: float,
     cfl_cut: float = 0.98,
-    ddx = lambda x,y: deriv_fwd(x, y),
-    bnd_type: str = 'wrap',
-    bnd_limits: list=[0,1],
-    **kwargs
-    ):
+    ddx=lambda x, y: deriv_fwd(x, y),
+    bnd_type: str = "wrap",
+    bnd_limits: list = [0, 1],
+    **kwargs,
+):
     r"""
     Advance nt time-steps in time the burger eq for a being a fix constant or array.
     Requires
@@ -150,7 +152,7 @@ def evolv_adv_burgers(
     hh : `array`
         A function that depends on xx.
     nt : `int`
-        Number of time iterations. 
+        Number of time iterations.
     a : `float` or `array`
         Either constant or array, which multiplies the right-hand side of the Burger's eq.
     cfl_cut : `float`
@@ -176,7 +178,7 @@ def evolv_adv_burgers(
     """
 
 
-def deriv_bck(xx: np.ndarray, hh: np.ndarray, **kwargs) -> np.ndarray:
+def deriv_back(xx: np.ndarray, hh: np.ndarray, **kwargs) -> np.ndarray:
     r"""
     Returns the backward derivative of hh with respect to xx.
 
@@ -219,9 +221,9 @@ def evolv_uadv_burgers(
     hh: np.ndarray,
     nt: int,
     cfl_cut: float = 0.98,
-    ddx = lambda x,y: deriv_fwd(x, y),
-    bnd_type: str='wrap',
-    bnd_limits: list = [0,1],
+    ddx=lambda x, y: deriv_fwd(x, y),
+    bnd_type: str = "wrap",
+    bnd_limits: list = [0, 1],
     **kwargs,
 ):
     r"""
@@ -238,7 +240,7 @@ def evolv_uadv_burgers(
     hh : `array`
         Function that depends on xx.
     nt : `int`
-        Number of time iterations. 
+        Number of time iterations.
     cfl_cut : `float`
         Constant value to limit dt from cfl_adv_burger.
         By default 0.98.
@@ -267,9 +269,9 @@ def evolv_Lax_uadv_burgers(
     hh: np.ndarray,
     nt: int,
     cfl_cut: float = 0.98,
-    ddx = lambda x,y: deriv_fwd(x, y),
-    bnd_type: str='wrap',
-    bnd_limits: list = [0,1],
+    ddx=lambda x, y: deriv_fwd(x, y),
+    bnd_type: str = "wrap",
+    bnd_limits: list = [0, 1],
     **kwargs,
 ):
     r"""
@@ -315,9 +317,9 @@ def evolv_Lax_adv_burgers(
     hh: np.ndarray,
     nt: int,
     cfl_cut: float = 0.98,
-    ddx = lambda x,y: deriv_fwd(x, y),
-    bnd_type: str='wrap',
-    bnd_limits: list = [0,1],
+    ddx=lambda x, y: deriv_fwd(x, y),
+    bnd_type: str = "wrap",
+    bnd_limits: list = [0, 1],
     **kwargs,
 ):
     r"""
@@ -334,7 +336,7 @@ def evolv_Lax_adv_burgers(
     hh : `array`
         A function that depends on xx.
     nt : `int`
-        Number of time iterations. 
+        Number of time iterations.
     a : `float` or `array`
         Either constant or array multiplies the right-hand side of the Burger's eq.
     cfl_cut : `float`
@@ -365,7 +367,7 @@ def step_uadv_burgers(
     xx: np.ndarray,
     hh: np.ndarray,
     cfl_cut: float = 0.98,
-    ddx = lambda x,y: deriv_fwd(x, y),
+    ddx=lambda x, y: deriv_fwd(x, y),
     **kwargs,
 ):
     r"""
@@ -398,7 +400,7 @@ def step_uadv_burgers(
     """
 
 
-def cfl_diff_burger(a: float, x: np.ndarray) -> float: 
+def cfl_diff_burger(a: float, x: np.ndarray) -> float:
     r"""
     Computes the dt_fact, i.e., Courant, Fredrich, and
     Lewy condition for the diffusive term in the Burger's eq.
@@ -424,9 +426,9 @@ def ops_Lax_LL_Add(
     a: np.ndarray,
     b: np.ndarray,
     cfl_cut: float = 0.98,
-    ddx = lambda x,y: deriv_fwd(x, y), 
-    bnd_type: str = 'wrap',
-    bnd_limits: list = [0,1],
+    ddx=lambda x, y: deriv_fwd(x, y),
+    bnd_type: str = "wrap",
+    bnd_limits: list = [0, 1],
     **kwargs,
 ):
     r"""
@@ -483,9 +485,9 @@ def ops_Lax_LL_Lie(
     a: np.ndarray,
     b: np.ndarray,
     cfl_cut: float = 0.98,
-    ddx = lambda x,y: deriv_fwd(x, y),
-    bnd_type: str = 'wrap',
-    bnd_limits: list = [0,1],
+    ddx=lambda x, y: deriv_fwd(x, y),
+    bnd_type: str = "wrap",
+    bnd_limits: list = [0, 1],
     **kwargs,
 ):
     r"""
@@ -505,7 +507,7 @@ def ops_Lax_LL_Lie(
     hh : `array`
         Function that depends on xx.
     nt : `int`
-        Number of time iterations. 
+        Number of time iterations.
     a : `float` or `array`
         Either constant or array multiplies the right-hand side of the Burger's eq.
     b : `float` or `array`
@@ -534,16 +536,16 @@ def ops_Lax_LL_Lie(
     """
 
 
-def ops_Lax_LL_Strang(
+def ops_Lax_LL_Strange(
     xx: np.ndarray,
     hh: np.ndarray,
     nt: int,
     a: np.ndarray,
     b: np.ndarray,
     cfl_cut: float = 0.98,
-    ddx = lambda x,y: deriv_fwd(x, y),
-    bnd_type: str = 'wrap',
-    bnd_limits: list = [0,1],
+    ddx=lambda x, y: deriv_fwd(x, y),
+    bnd_type: str = "wrap",
+    bnd_limits: list = [0, 1],
     **kwargs,
 ):
     r"""
@@ -593,22 +595,22 @@ def ops_Lax_LL_Strang(
     """
 
 
-def osp_Lax_LH_Strang(
+def osp_Lax_LH_Strange(
     xx: np.ndarray,
     hh: np.ndarray,
     nt: int,
     a: np.ndarray,
     b: np.ndarray,
     cfl_cut: float = 0.98,
-    ddx = lambda x,y: deriv_fwd(x, y),
-    bnd_type: str = 'wrap',
-    bnd_limits: list = [0,1],
+    ddx=lambda x, y: deriv_fwd(x, y),
+    bnd_type: str = "wrap",
+    bnd_limits: list = [0, 1],
     **kwargs,
 ):
     r"""
     Advance nt time-steps in time the burger eq for a being a and b
     a fix constant or array. Solving two advective terms separately
-    with the Strang Operator Splitting scheme. One step is with a Lax method
+    with the Strange Operator Splitting scheme. One step is with a Lax method
     and the second is the Hyman predictor-corrector scheme.
 
     Requires
@@ -656,8 +658,8 @@ def step_diff_burgers(
     xx: np.ndarray,
     hh: np.ndarray,
     a: float,
-    ddx = lambda x,y: deriv_cent(x, y),
-    **kwargs
+    ddx=lambda x, y: deriv_cent(x, y),
+    **kwargs,
 ) -> np.ndarray:
     r"""
     Right hand side of the diffusive term of Burger's eq. where nu can be a constant or a function that
@@ -713,15 +715,11 @@ def NR_f(
     """
 
 
-def jacobian(    
-    xx: np.ndarray,
-    un: np.ndarray,
-    a: float,
-    dt: float,
-    **kwargs
-) -> np.ndarray: 
+def jacobian(
+    xx: np.ndarray, un: np.ndarray, a: float, dt: float, **kwargs
+) -> np.ndarray:
     r"""
-    Jacobian of the F function. 
+    Jacobian of the F function.
 
     Parameters
     ----------
@@ -745,12 +743,12 @@ def Newton_Raphson(
     xx: np.ndarray,
     hh: np.ndarray,
     a: np.ndarray,
-    dt: float, 
+    dt: float,
     nt: int,
     toll: float = 1e-5,
-    ncount: int = 2, 
-    bnd_type: str = 'wrap',
-    bnd_limits: list = [0,1],
+    ncount: int = 2,
+    bnd_type: str = "wrap",
+    bnd_limits: list = [0, 1],
     **kwargs,
 ):
     r"""
@@ -794,7 +792,7 @@ def Newton_Raphson(
     countt : `list(int)`
         number iterations for each timestep
     """
-    err = 1.
+    err = 1.0
     unnt = np.zeros((np.size(xx), nt))
     errt = np.zeros((nt))
     countt = np.zeros((nt))
@@ -803,14 +801,13 @@ def Newton_Raphson(
 
     # Looping over time
     for it in range(1, nt):
-        uo = unnt[:, it-1]
-        ug = unnt[:, it-1]
+        uo = unnt[:, it - 1]
+        ug = unnt[:, it - 1]
         count = 0
         # iteration to reduce the error.
-        while ((err >= toll) and (count < ncount)):
-
-            jac = jacobian(xx, ug, a, dt) # Jacobian 
-            ff1 = NR_f(xx, ug, uo, a, dt) # F
+        while (err >= toll) and (count < ncount):
+            jac = jacobian(xx, ug, a, dt)  # Jacobian
+            ff1 = NR_f(xx, ug, uo, a, dt)  # F
             # Inversion:
             un = ug - np.matmul(np.linalg.inv(jac), ff1)
 
@@ -825,13 +822,13 @@ def Newton_Raphson(
 
             # Boundaries
             if bnd_limits[1] > 0:
-                u1_c = un[bnd_limits[0]:-bnd_limits[1]]
+                u1_c = un[bnd_limits[0] : -bnd_limits[1]]
             else:
-                u1_c = un[bnd_limits[0]:]
+                u1_c = un[bnd_limits[0] :]
             un = np.pad(u1_c, bnd_limits, bnd_type)
             ug = un
-        err = 1.
-        t[it] = t[it-1] + dt
+        err = 1.0
+        t[it] = t[it - 1] + dt
         unnt[:, it] = un
 
     return t, unnt, errt, countt
@@ -893,12 +890,12 @@ def jacobian_u(
 def Newton_Raphson_u(
     xx: np.ndarray,
     hh: np.ndarray,
-    dt: float, 
+    dt: float,
     nt: int,
     toll: float = 1e-5,
-    ncount: int = 2, 
-    bnd_type: str = 'wrap',
-    bnd_limits: list = [0,1],
+    ncount: int = 2,
+    bnd_type: str = "wrap",
+    bnd_limits: list = [0, 1],
     **kwargs,
 ):
     """
@@ -940,7 +937,7 @@ def Newton_Raphson_u(
     countt : `array(int)`
         Number iterations for each timestep
     """
-    err = 1.
+    err = 1.0
     unnt = np.zeros((np.size(xx), nt))
     errt = np.zeros((nt))
     countt = np.zeros((nt))
@@ -949,13 +946,13 @@ def Newton_Raphson_u(
 
     # Looping over time
     for it in range(1, nt):
-        uo = unnt[:, it-1]
-        ug = unnt[:, it-1]
+        uo = unnt[:, it - 1]
+        ug = unnt[:, it - 1]
         count = 0
         # iteration to reduce the error.
-        while ((err >= toll) and (count < ncount)):
-            jac = jacobian_u(xx, ug, dt) #  Jacobian
-            ff1 = NR_f_u(xx, ug, uo, dt) #  F
+        while (err >= toll) and (count < ncount):
+            jac = jacobian_u(xx, ug, dt)  #  Jacobian
+            ff1 = NR_f_u(xx, ug, uo, dt)  #  F
             # Inversion:
             un = ug - np.matmul(np.linalg.inv(jac), ff1)
 
@@ -969,13 +966,13 @@ def Newton_Raphson_u(
 
             # Boundaries
             if bnd_limits[1] > 0:
-                u1_c = un[bnd_limits[0]:-bnd_limits[1]]
+                u1_c = un[bnd_limits[0] : -bnd_limits[1]]
             else:
-                u1_c = un[bnd_limits[0]:]
+                u1_c = un[bnd_limits[0] :]
             un = np.pad(u1_c, bnd_limits, bnd_type)
             ug = un
-        err = 1.
-        t[it] = t[it-1] + dt
+        err = 1.0
+        t[it] = t[it - 1] + dt
         unnt[:, it] = un
 
     return t, unnt, errt, countt
@@ -1007,14 +1004,14 @@ def evol_sts(
     nt: int,
     a: np.ndarray,
     cfl_cut: float = 0.98,
-    ddx = lambda x,y: deriv_fwd(x, y),
-    bnd_type: str='wrap',
-    bnd_limits: list = [0,1],
+    ddx=lambda x, y: deriv_fwd(x, y),
+    bnd_type: str = "wrap",
+    bnd_limits: list = [0, 1],
     nu: float = 0.9,
     n_sts: float = 10,
-): 
+):
     """
-    Evolution of the STS method. 
+    Evolution of the STS method.
 
     Parameters
     ----------
@@ -1059,15 +1056,15 @@ def evol_sts(
 def hyman(
     xx: np.ndarray,
     f: np.ndarray,
-    dth: float, 
+    dth: float,
     a: np.ndarray,
     fold: np.ndarray = None,
     dtold: float = None,
     cfl_cut: float = 0.8,
-    ddx = lambda x,y: deriv_fwd(x, y),
-    bnd_type: str='wrap',
-    bnd_limits: list = [0,1],
-    **kwargs
+    ddx=lambda x, y: deriv_fwd(x, y),
+    bnd_type: str = "wrap",
+    bnd_limits: list = [0, 1],
+    **kwargs,
 ):
     """
     Hyman Corrector-predictor method
@@ -1113,25 +1110,24 @@ def hyman(
     """
     dt, u1_temp = step_adv_burgers(xx, f, a, ddx=ddx)
 
-    if (np.any(fold) is None):
-        firstit = False
+    if np.any(fold) is None:
         fold = np.copy(f)
         f = (np.roll(f, 1) + np.roll(f, -1)) / 2.0 + u1_temp * dth
         dtold = dth
     else:
-        ratio = dth/dtold
+        ratio = dth / dtold
         a1 = ratio**2
-        b1 =  dth * (1.0 + ratio)
-        a2 =  2. * (1.0 + ratio) / (2.0 + 3.0 * ratio)
-        b2 =  dth * (1.0 + ratio**2) / (2.0 + 3.0 * ratio)
-        c2 =  dth * (1.0 + ratio) / (2.0 + 3.0 * ratio)
+        b1 = dth * (1.0 + ratio)
+        a2 = 2.0 * (1.0 + ratio) / (2.0 + 3.0 * ratio)
+        b2 = dth * (1.0 + ratio**2) / (2.0 + 3.0 * ratio)
+        c2 = dth * (1.0 + ratio) / (2.0 + 3.0 * ratio)
 
         f, fold, fsav = hyman_pred(f, fold, u1_temp, a1, b1, a2, b2)
 
         if bnd_limits[1] > 0:
-            u1_c = f[bnd_limits[0]:-bnd_limits[1]]
+            u1_c = f[bnd_limits[0] : -bnd_limits[1]]
         else:
-            u1_c = f[bnd_limits[0]:]
+            u1_c = f[bnd_limits[0] :]
         f = np.pad(u1_c, bnd_limits, bnd_type)
 
         dt, u1_temp = step_adv_burgers(xx, f, a, cfl_cut, ddx=ddx)
@@ -1139,9 +1135,9 @@ def hyman(
         f = hyman_corr(f, fsav, u1_temp, c2)
 
     if bnd_limits[1] > 0:
-        u1_c = f[bnd_limits[0]:-bnd_limits[1]]
+        u1_c = f[bnd_limits[0] : -bnd_limits[1]]
     else:
-        u1_c = f[bnd_limits[0]:]
+        u1_c = f[bnd_limits[0] :]
     f = np.pad(u1_c, bnd_limits, bnd_type)
 
     dtold = dth
@@ -1150,10 +1146,7 @@ def hyman(
 
 
 def hyman_corr(
-    f: np.ndarray,
-    fsav: np.ndarray,
-    dfdt: np.ndarray,
-    c2: float
+    f: np.ndarray, fsav: np.ndarray, dfdt: np.ndarray, c2: float
 ) -> np.ndarray:
     """
     Hyman Corrector step
@@ -1185,7 +1178,7 @@ def hyman_pred(
     b1: float,
     a2: float,
     b2: float,
-): 
+):
     """
     Hyman Predictor step
 
