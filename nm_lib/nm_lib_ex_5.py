@@ -9,6 +9,7 @@ Created on Fri Jul 02 10:25:17 2021
 
 # import external public "common" modules
 import numpy as np
+from nm_lib.nm_lib_ex_1 import deriv_cent, deriv_fwd
 
 
 def cfl_diff_burger(a: float, x: np.ndarray) -> float:
@@ -427,4 +428,3 @@ def evol_sts(
         Spatial and time evolution of u^n_j for n = (0,nt), where j represents
         all the elements of the domain.
     """
-

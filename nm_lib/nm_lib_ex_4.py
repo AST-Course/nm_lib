@@ -9,6 +9,7 @@ Created on Fri Jul 02 10:25:17 2021
 
 # import external public "common" modules
 import numpy as np
+from nm_lib.nm_lib_ex_1 import deriv_fwd
 
 
 def evolv_Lax_uadv_burgers(
@@ -63,17 +64,17 @@ def Rie_flux(
     hh: np.ndarray,
 ):
     """
-    Flux
+     Flux
 
-    Parameters
-    ----------
-    hh : `array`
-        A function that depends on xx.
+     Parameters
+     ----------
+     hh : `array`
+         A function that depends on xx.
 
-   Returns
-    -------
-    flux : `array`
-        h^2
+    Returns
+     -------
+     flux : `array`
+         h^2
     """
 
 
@@ -82,19 +83,19 @@ def Rie_va(
     uR: np.ndarray,
 ):
     """
-    absolut propagating speed (va), uses Rie_flux
+     absolute propagating speed (va), uses Rie_flux
 
-    Parameters
-    ----------    
-    uL: `array`
-        Left and side variable 
-    uR: `array`
-        Right and side variable 
+     Parameters
+     ----------
+     uL: `array`
+         Left and side variable
+     uR: `array`
+         Right and side variable
 
-   Returns
-    -------
-    va : `array`
-        absolute va speed 
+    Returns
+     -------
+     va : `array`
+         absolute va speed
     """
 
 
@@ -103,19 +104,19 @@ def Rie_interface_flux(
     uR: np.ndarray,
 ):
     """
-    absolut propagating speed (va). Uses Rie_va and Rie_flux
+     absolute propagating speed (va). Uses Rie_va and Rie_flux
 
-    Parameters
-    ----------  
-    uL: `array`
-        Left and side variable 
-    uR: `array`
-        Right and side variable 
+     Parameters
+     ----------
+     uL: `array`
+         Left and side variable
+     uR: `array`
+         Right and side variable
 
-   Returns
-    -------
-    F*: `array`
-        Interface Rusanov flux
+    Returns
+     -------
+     F*: `array`
+         Interface Rusanov flux
     """
 
 
@@ -124,8 +125,8 @@ def evolv_Rie_uadv_burgers(
     hh: np.ndarray,
     nt: int,
     cfl_cut: float = 0.98,
-    bnd_type: str='wrap',
-    bnd_limits: list = [1,1],
+    bnd_type: str = "wrap",
+    bnd_limits: list = [1, 1],
     **kwargs,
 ):
     r"""
@@ -162,4 +163,3 @@ def evolv_Rie_uadv_burgers(
         Spatial and time evolution of u^n_j for n = (0,nt), and where j represents
         all the elements of the domain.
     """
-    
