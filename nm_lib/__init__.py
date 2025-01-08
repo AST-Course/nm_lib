@@ -1,10 +1,10 @@
 """
-Created on Thu Jun 30 04:12:21 2021.
+====
+nm_lib
+====
 
-@author: Juan Martinez-Sykora
 """
 
-__all__ = ["nm_lib"]
+from .version import version as __version__
 
-
-from . import nm_lib
+__all__ = ["__version__"]
