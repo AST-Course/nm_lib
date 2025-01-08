@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Created on Fri Jul 02 10:25:17 2021
 
@@ -30,9 +28,7 @@ def deriv_fwd(xx: np.ndarray, hh: np.ndarray, **kwargs) -> np.ndarray:
     """
 
 
-def order_conv(
-    hh: np.ndarray, hh2: np.ndarray, hh4: np.ndarray, **kwargs
-) -> np.ndarray:
+def order_conv(hh: np.ndarray, hh2: np.ndarray, hh4: np.ndarray, **kwargs) -> np.ndarray:
     """
     Computes the order of convergence of a derivative function
 

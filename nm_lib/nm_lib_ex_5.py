@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Created on Fri Jul 02 10:25:17 2021
 
@@ -9,6 +7,7 @@ Created on Fri Jul 02 10:25:17 2021
 
 # import external public "common" modules
 import numpy as np
+
 from nm_lib.nm_lib_ex_1 import deriv_cent, deriv_fwd
 
 
@@ -92,9 +91,7 @@ def NR_f(
     """
 
 
-def jacobian(
-    xx: np.ndarray, un: np.ndarray, a: float, dt: float, **kwargs
-) -> np.ndarray:
+def jacobian(xx: np.ndarray, un: np.ndarray, a: float, dt: float, **kwargs) -> np.ndarray:
     r"""
     Jacobian of the F function.
 
@@ -125,8 +122,7 @@ def Newton_Raphson(
     toll: float = 1e-5,
     ncount: int = 2,
     bnd_type: str = "wrap",
-    bnd_limits: list = [0, 1],
-    **kwargs,
+    bnd_limits: list | None = None,
 ):
     r"""
     NR scheme for the burgers equation.
@@ -169,12 +165,14 @@ def Newton_Raphson(
     countt : `list(int)`
         number iterations for each timestep
     """
+    if bnd_limits is None:
+        bnd_limits = [0, 1]
     err = 1.0
     unnt = np.zeros((np.size(xx), nt))
-    errt = np.zeros((nt))
-    countt = np.zeros((nt))
+    errt = np.zeros(nt)
+    countt = np.zeros(nt)
     unnt[:, 0] = hh
-    t = np.zeros((nt))
+    t = np.zeros(nt)
 
     # Looping over time
     for it in range(1, nt):
@@ -190,7 +188,6 @@ def Newton_Raphson(
 
             # error:
             err = np.max(np.abs(un - ug) / (np.abs(un) + toll))
-            # err = np.max(np.abs(un - ug))
             errt[it] = err
 
             # Number of iterations
@@ -272,8 +269,7 @@ def Newton_Raphson_u(
     toll: float = 1e-5,
     ncount: int = 2,
     bnd_type: str = "wrap",
-    bnd_limits: list = [0, 1],
-    **kwargs,
+    bnd_limits: list | None = None,
 ):
     """
     NR scheme for the burgers equation.
@@ -314,12 +310,14 @@ def Newton_Raphson_u(
     countt : `array(int)`
         Number iterations for each timestep
     """
+    if bnd_limits is None:
+        bnd_limits = [0, 1]
     err = 1.0
     unnt = np.zeros((np.size(xx), nt))
-    errt = np.zeros((nt))
-    countt = np.zeros((nt))
+    errt = np.zeros(nt)
+    countt = np.zeros(nt)
     unnt[:, 0] = hh
-    t = np.zeros((nt))
+    t = np.zeros(nt)
 
     # Looping over time
     for it in range(1, nt):
@@ -383,7 +381,7 @@ def evol_sts(
     cfl_cut: float = 0.98,
     ddx=lambda x, y: deriv_fwd(x, y),
     bnd_type: str = "wrap",
-    bnd_limits: list = [0, 1],
+    bnd_limits: list | None = None,
     nu: float = 0.9,
     n_sts: float = 10,
 ):

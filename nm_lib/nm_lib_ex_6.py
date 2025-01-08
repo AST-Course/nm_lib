@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Created on Fri Jul 02 10:25:17 2021
 
@@ -9,6 +7,7 @@ Created on Fri Jul 02 10:25:17 2021
 
 # import external public "common" modules
 import numpy as np
+
 from nm_lib.nm_lib_ex_1 import deriv_fwd
 from nm_lib.nm_lib_ex_2 import step_adv_burgers
 
@@ -22,7 +21,7 @@ def ops_Lax_LL_Add(
     cfl_cut: float = 0.98,
     ddx=lambda x, y: deriv_fwd(x, y),
     bnd_type: str = "wrap",
-    bnd_limits: list = [0, 1],
+    bnd_limits: list | None = None,
     **kwargs,
 ):
     r"""
@@ -81,7 +80,7 @@ def ops_Lax_LL_Lie(
     cfl_cut: float = 0.98,
     ddx=lambda x, y: deriv_fwd(x, y),
     bnd_type: str = "wrap",
-    bnd_limits: list = [0, 1],
+    bnd_limits: list | None = None,
     **kwargs,
 ):
     r"""
@@ -139,7 +138,7 @@ def ops_Lax_LL_Strange(
     cfl_cut: float = 0.98,
     ddx=lambda x, y: deriv_fwd(x, y),
     bnd_type: str = "wrap",
-    bnd_limits: list = [0, 1],
+    bnd_limits: list | None = None,
     **kwargs,
 ):
     r"""
@@ -198,7 +197,7 @@ def osp_Lax_LH_Strange(
     cfl_cut: float = 0.98,
     ddx=lambda x, y: deriv_fwd(x, y),
     bnd_type: str = "wrap",
-    bnd_limits: list = [0, 1],
+    bnd_limits: list | None = None,
     **kwargs,
 ):
     r"""
@@ -254,12 +253,11 @@ def hyman(
     dth: float,
     a: np.ndarray,
     fold: np.ndarray = None,
-    dtold: float = None,
+    dtold: float | None = None,
     cfl_cut: float = 0.8,
     ddx=lambda x, y: deriv_fwd(x, y),
     bnd_type: str = "wrap",
-    bnd_limits: list = [0, 1],
-    **kwargs,
+    bnd_limits: list | None = None,
 ):
     """
     Hyman Corrector-predictor method
@@ -303,6 +301,8 @@ def hyman(
     dt : `float`
         time interval
     """
+    if bnd_limits is None:
+        bnd_limits = [0, 1]
     dt, u1_temp = step_adv_burgers(xx, f, a, ddx=ddx)
 
     if np.any(fold) is None:
@@ -327,7 +327,7 @@ def hyman(
 
         dt, u1_temp = step_adv_burgers(xx, f, a, cfl_cut, ddx=ddx)
 
-        f = hyman_corr(f, fsav, u1_temp, c2)
+        f = hyman_corr(fsav, u1_temp, c2)
 
     if bnd_limits[1] > 0:
         u1_c = f[bnd_limits[0] : -bnd_limits[1]]
@@ -340,16 +340,12 @@ def hyman(
     return f, fold, dtold
 
 
-def hyman_corr(
-    f: np.ndarray, fsav: np.ndarray, dfdt: np.ndarray, c2: float
-) -> np.ndarray:
+def hyman_corr(fsav: np.ndarray, dfdt: np.ndarray, c2: float) -> np.ndarray:
     """
     Hyman Corrector step
 
     Parameters
     ----------
-    f : `array`
-        A function that depends on xx.
     fsav : `array`
         A function that depends on xx from the interpolated step.
     dfdt : `array`
