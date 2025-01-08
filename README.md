@@ -9,10 +9,9 @@ Please create [AST 5110 wiki](https://github.com/AST-Course/AST5110/wiki) to add
 
 ### In case you want to do the course in a different environment, do the following:
 ```
-conda create --name ast5110_course
-conda activate ast5110_course
-conda install jupyter
-pip install matplotlib
+mamba create --name ast5110_course python=3.12
+mamba activate ast5110_course
+mamba install --file requirements.txt
 ```
 
 ### To install the files:
@@ -22,7 +21,7 @@ pip install -e .
 ```
 
 ### To start using the library:
-Run this code to get started:
+Run, for instance, this code to get started:
 ```
-from nm_lib import nm_lib as nm
+from nm_lib.nm_ex import nm_lib_ex_1 as nm1
 ```
