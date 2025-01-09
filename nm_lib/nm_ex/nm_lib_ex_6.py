@@ -5,7 +5,6 @@ Created on Fri Jul 02 10:25:17 2021
 
 """
 
-# import external public "common" modules
 import numpy as np
 
 from nm_lib.nm_lib_ex_1 import deriv_fwd

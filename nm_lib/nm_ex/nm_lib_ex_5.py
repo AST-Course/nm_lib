@@ -5,10 +5,9 @@ Created on Fri Jul 02 10:25:17 2021
 
 """
 
-# import external public "common" modules
 import numpy as np
 
-from nm_lib.nm_lib_ex_1 import deriv_cent, deriv_fwd
+from nm_lib.nm_lib_ex_1 import deriv_fwd
 
 
 def cfl_diff_burger(a: float, x: np.ndarray) -> float:
@@ -34,12 +33,11 @@ def step_diff_burgers(
     xx: np.ndarray,
     hh: np.ndarray,
     a: float,
-    ddx=lambda x, y: deriv_cent(x, y),
     **kwargs,
 ) -> np.ndarray:
     r"""
     Right hand side of the diffusive term of Burger's eq. where nu can be a constant or a function that
-    depends on xx.
+    depends on xx. It will benefit from nm_lib_ex_1 functions
 
     Parameters
     ----------
@@ -49,9 +47,6 @@ def step_diff_burgers(
         A function that depends on xx.
     a : `float` or `array`
         Either constant or array multiplies the right-hand side of the Burger's eq.
-    ddx : `lambda function`
-        Allows to change the space derivative function.
-        By default lambda x,y: deriv_fwd(x, y)
 
     Returns
     -------
@@ -386,7 +381,7 @@ def evol_sts(
     n_sts: float = 10,
 ):
     """
-    Evolution of the STS method.
+    Evolution of the STS method. It will benefit from nm_lib_ex_1 functions
 
     Parameters
     ----------
@@ -401,9 +396,6 @@ def evol_sts(
     cfl_cut : `float`
         Constant value to limit dt from cfl_adv_burger.
         By default 0.45
-    ddx : `lambda function`
-        Allows to change the space derivative function.
-        By default lambda x,y: deriv_fwd(x, y)
     bnd_type : `string`
         Allows to select the type of boundaries
         by default 'wrap'
