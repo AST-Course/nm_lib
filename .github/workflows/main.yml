@@ -47,4 +47,4 @@ jobs:
 
     - name: Run pytest ex2
       run: |
-        pytest -vvv ./nm_lib/test/test_ex_2b.py
+        pytest -vvv ./nm_lib/nm_ex/test/test_ex_2b.py
