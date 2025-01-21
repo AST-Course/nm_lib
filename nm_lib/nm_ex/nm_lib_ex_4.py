@@ -7,7 +7,7 @@ Created on Fri Jul 02 10:25:17 2021
 
 import numpy as np
 
-from nm_lib.nm_lib_ex_1 import deriv_fwd
+from nm_lib.nm_ex.nm_lib_ex_1 import deriv_fwd
 
 
 def evolv_Lax_uadv_burgers(

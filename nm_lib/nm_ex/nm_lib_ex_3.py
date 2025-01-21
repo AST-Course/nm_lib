@@ -7,7 +7,7 @@ Created on Fri Jul 02 10:25:17 2021
 
 import numpy as np
 
-from nm_lib.nm_lib_ex_1 import deriv_fwd
+from nm_lib.nm_ex.nm_lib_ex_1 import deriv_fwd
 
 
 def deriv_bck(xx: np.ndarray, hh: np.ndarray, **kwargs) -> np.ndarray:
@@ -26,6 +26,25 @@ def deriv_bck(xx: np.ndarray, hh: np.ndarray, **kwargs) -> np.ndarray:
     `array`
         The backward derivative of hh respect to xx. The first
         grid point is ill-calculated.
+    """
+
+
+def deriv_cent(xx: np.ndarray, hh: np.ndarray, **kwargs) -> np.ndarray:
+    r"""
+    Returns the centered 2nd derivative of hh with respect to xx.
+
+    Parameters
+    ----------
+    xx : `array`
+        Spatial axis.
+    hh : `array`
+        Function that depends on xx.
+
+    Returns
+    -------
+    `array`
+        The centered 2nd order derivative of hh with respect to xx. The first
+        and last grid points are ill-calculated.
     """
 
 
