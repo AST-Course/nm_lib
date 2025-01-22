@@ -44,7 +44,6 @@ def step_adv_burgers(
     Returns
     -------
     `array`
-        Time interval.
         Right hand side of (u^{n+1}-u^{n})/dt = from burgers eq, i.e., x \frac{\partial u}{\partial x}
     """
 
