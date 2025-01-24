@@ -64,21 +64,3 @@ def deriv_4tho(xx: np.ndarray, hh: np.ndarray, **kwargs) -> np.ndarray:
         The last and first two grid points are ill-calculated.
     """
 
-
-def deriv_cent(xx: np.ndarray, hh: np.ndarray, **kwargs) -> np.ndarray:
-    r"""
-    Returns the centered 2nd derivative of hh with respect to xx.
-
-    Parameters
-    ----------
-    xx : `array`
-        Spatial axis.
-    hh : `array`
-        Function that depends on xx.
-
-    Returns
-    -------
-    `array`
-        The centered 2nd order derivative of hh with respect to xx. The first
-        and last grid points are ill-calculated.
-    """
