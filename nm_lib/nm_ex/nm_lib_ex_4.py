@@ -10,16 +10,15 @@ import numpy as np
 from nm_lib.nm_ex.nm_lib_ex_1 import deriv_fwd
 
 
-
 def evolv_Lax_adv_burgers(
     xx: np.ndarray,
     hh: np.ndarray,
     nt: int,
     a: np.ndarray,
     cfl_cut: float = 0.98,
-    ddx = lambda x,y: deriv_fwd(x, y),
-    bnd_type: str='wrap',
-    bnd_limits: list = [0,1],
+    ddx=lambda x, y: deriv_fwd(x, y),
+    bnd_type: str = "wrap",
+    bnd_limits: list | None = None,
     **kwargs,
 ):
     r"""

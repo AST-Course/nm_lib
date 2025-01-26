@@ -63,4 +63,3 @@ def deriv_4tho(xx: np.ndarray, hh: np.ndarray, **kwargs) -> np.ndarray:
         The centered 4th order derivative of hh with respect to xx.
         The last and first two grid points are ill-calculated.
     """
-
