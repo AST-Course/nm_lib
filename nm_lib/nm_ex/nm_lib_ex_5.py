@@ -25,7 +25,7 @@ def cfl_diff_burger(a: float, x: np.ndarray) -> float:
     Returns
     -------
     `float`
-        min(dx/|a|)
+        min(0.5 dx**2 / nu)
     """
 
 
@@ -51,7 +51,132 @@ def step_diff_burgers(
     Returns
     -------
     `array`
+        Diffusive part from right hand side of (u^{n+1}-u^{n})/dt = from burgers eq, i.e., \frac{\partial^2 u}{\partial x^2}
+    """
+
+
+def evolv_diff_burgers(
+    xx: np.ndarray,
+    hh: np.ndarray,
+    nt: int,
+    a: float,
+    cfl_cut: float = 0.98,
+    ddx=lambda x, y: deriv2_cent(x, y),
+    bnd_type: str = "wrap",
+    bnd_limits: list | None = None,
+    **kwargs,
+):
+    r"""
+    Advance nt time-steps in time the burger eq for a being a fix constant or array.
+    Requires
+    ----------
+    step_diff_burgers
+    cfl_diff_burgers
+
+    Parameters
+    ----------
+    xx : `array`
+        Spatial axis.
+    hh : `array`
+        A function that depends on xx.
+    a : `float` or `array`
+        Either constant or array, which multiplies the right-hand side of the DIFFUSIVE Burger's eq.
+    cfl_cut : `float`
+        Constant value to limit dt from cfl_adv_burger.
+    ddx : `lambda function`
+        Allows to change the space derivative function.
+        By default lambda x,y: deriv_fwd(x, y).
+    bnd_type : `string`
+        Allows to select the type of boundaries.
+        By default 'wrap'.
+    bnd_limits : `list(int)`
+        Array of two integer elements. The number of pixels
+        will need to be updated with the boundary information.
+        By default [0,1].
+
+    Returns
+    -------
+    t : `array`
+        time 1D array
+    unnt : `array`
+        Spatial and time evolution of u^n_j for n = (0,nt), and where j represents
+        all the elements of the domain.
+    """
+
+
+def step_diff_variable(
+    xx: np.ndarray,
+    hh: np.ndarray,
+    mu=lambda x, y: y,
+) -> np.ndarray:
+    r"""
+    Right hand side of the diffusive term of Burger's eq. where nu can be a constant or a function that
+    depends on xx.
+
+    Parameters
+    ----------
+    xx : `array`
+        Spatial axis.
+    hh : `array`
+        A function that depends on xx.
+    a : `float` or `array`
+        Either constant or array multiplies the right-hand side of the Burger's eq.
+    ddx : `lambda function`
+        Allows to change the space derivative function.
+        By default lambda x,y: deriv_fwd(x, y)
+
+    Returns
+    -------
+    `array`
         Right hand side of (u^{n+1}-u^{n})/dt = from burgers eq, i.e., x \frac{\partial u}{\partial x}
+    """
+
+
+def evolv_diff_variable(
+    xx: np.ndarray,
+    hh: np.ndarray,
+    nt: int,
+    cfl_cut: float = 0.98,
+    mu=lambda x, y: y,
+    bnd_type: str = "wrap",
+    bnd_limits: list | None = None,
+    **kwargs,
+):
+    r"""
+    Advance nt time-steps in time the burger eq for a being a fix constant or array.
+    Requires
+    ----------
+    step_diff_burgers
+    cfl_diff_burgers
+
+    Parameters
+    ----------
+    xx : `array`
+        Spatial axis.
+    hh : `array`
+        A function that depends on xx.
+    a : `float` or `array`
+        Either constant or array, which multiplies the right-hand side of the DIFFUSIVE Burger's eq.
+    cfl_cut : `float`
+        Constant value to limit dt from cfl_adv_burger.
+    ddx : `lambda function`
+        Allows to change the space derivative function.
+        By default lambda x,y: deriv_fwd(x, y).
+    bnd_type : `string`
+        Allows to select the type of boundaries.
+        By default 'wrap'.
+    bnd_limits : `list(int)`
+        Array of two integer elements. The number of pixels
+        will need to be updated with the boundary information.
+        By default [0,1].
+
+    Returns
+    -------
+    t : `array`
+        time 1D array
+    unnt : `array`
+        Spatial and time evolution of u^n_j for n = (0,nt), and where j represents
+        all the elements of the domain.
     """
 
 
