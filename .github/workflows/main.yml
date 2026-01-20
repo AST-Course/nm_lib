@@ -43,7 +43,7 @@ jobs:
 
     - name: Run tox
       run: |
-        tox -e py312=
+        tox -e py312
 
     - name: Run pytest ex2
       run: |
