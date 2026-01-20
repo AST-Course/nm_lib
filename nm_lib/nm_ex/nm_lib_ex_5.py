@@ -126,7 +126,7 @@ def evolv_diff_burgers(
 def step_diff_variable(
     xx: np.ndarray,
     hh: np.ndarray,
-    mu=lambda x, y: y,
+    mu=lambda x, y: deriv2_cent(x, y),
 ) -> np.ndarray:
     r"""
     Right hand side of the diffusive term of Burger's eq. where nu can be a constant or a function that
@@ -156,7 +156,7 @@ def evolv_diff_variable(
     hh: np.ndarray,
     nt: int,
     cfl_cut: float = 0.98,
-    mu=lambda x, y: y,
+    mu=lambda x, y: deriv2_cent(x, y),
     bnd_type: str = "wrap",
     bnd_limits: list | None = None,
     **kwargs,
