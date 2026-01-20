@@ -114,7 +114,7 @@ def Rie_flux(
     hh: np.ndarray,
 ):
     """
-     Flux
+     Flux from the burgers eq.
 
      Parameters
      ----------
@@ -124,7 +124,6 @@ def Rie_flux(
     Returns
      -------
      flux : `array`
-         h^2/2
     """
 
 

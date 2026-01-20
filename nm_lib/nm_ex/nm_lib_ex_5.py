@@ -25,7 +25,26 @@ def cfl_diff_burger(a: float, x: np.ndarray) -> float:
     Returns
     -------
     `float`
-        min(0.5 dx**2 / nu)
+        min(0.5 dx**2 / np.abs(a))
+    """
+
+
+def deriv2_cent(xx: np.ndarray, hh: np.ndarray, **kwargs) -> np.ndarray:
+    r"""
+    Returns the centered 2nd derivative of hh with respect to xx.
+
+    Parameters
+    ----------
+    xx : `array`
+        Spatial axis.
+    hh : `array`
+        Function that depends on xx.
+
+    Returns
+    -------
+    `array`
+        The 2nd order centered 2nd derivative of hh with respect to xx. The first
+        and last grid points are ill-calculated.
     """
 
 
@@ -207,7 +226,7 @@ def NR_f(
     Returns
     -------
     `array`
-        function  u^{n+1}_{j}-u^{n}_{j} - a (u^{n+1}_{j+1} - 2 u^{n+1}_{j} -u^{n+1}_{j-1}) dt
+        function  u^{n+1}_{j}-u^{n}_{j} - a (u^{n+1}_{j+1} - 2 u^{n+1}_{j} + u^{n+1}_{j-1}) dt / dx**2
     """
 
 
@@ -352,7 +371,7 @@ def NR_f_u(
     Returns
     -------
     `array`
-        function  u^{n+1}_{j}-u^{n}_{j} - u^{n}_{j} (u^{n+1}_{j+1} - 2 u^{n+1}_{j} -u^{n+1}_{j-1}) dt
+        function  u^{n+1}_{j}-u^{n}_{j} - u^{n}_{j} (u^{n+1}_{j+1} - 2 u^{n+1}_{j} + u^{n+1}_{j-1}) dt / dx**2
     """
 
 
