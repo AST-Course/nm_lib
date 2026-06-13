@@ -371,7 +371,7 @@ def NR_f_u(
     Returns
     -------
     `array`
-        function  u^{n+1}_{j}-u^{n}_{j} - u^{n}_{j} (u^{n+1}_{j+1} - 2 u^{n+1}_{j} + u^{n+1}_{j-1}) dt / dx**2
+        function  u^{n+1}_{j}-u^{n}_{j} - u^{n+1}_{j} (u^{n+1}_{j+1} - 2 u^{n+1}_{j} + u^{n+1}_{j-1}) dt / dx**2
     """
 
 
