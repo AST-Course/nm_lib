@@ -324,7 +324,7 @@ def hyman(
             u1_c = f[bnd_limits[0] :]
         f = np.pad(u1_c, bnd_limits, bnd_type)
 
-        dt, u1_temp = step_adv_burgers(xx, f, a, cfl_cut, ddx=ddx) # This function is expected to return the right hand side
+        dt, u1_temp = step_adv_burgers(xx, f, a, cfl_cut, ddx=ddx)  # This function is expected to return the right hand side
 
         f = hyman_corr(fsav, u1_temp, c2)
 
